@@ -4,6 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
 @Composable
-fun EditToDoScreen(navController: NavController, todoId: Int) {
+fun EditToDoScreen(
+    navController: NavController,
+    viewModel: EditToDoViewModel,
+    todoId: Int,
+) {
 
 }
