@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,8 +27,8 @@ fun CreateToDoScreen(
 ) {
     val scaffoldState = rememberScaffoldState()
 
-    val title = remember { mutableStateOf("") }
-    val detail = remember { mutableStateOf("") }
+    val title = rememberSaveable { mutableStateOf("") }
+    val detail = rememberSaveable { mutableStateOf("") }
 
     val errorMessage = viewModel.errorMessage.collectAsState()
     val done = viewModel.done.collectAsState()
