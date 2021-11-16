@@ -19,6 +19,7 @@ import com.mokelab.compose.todo.R
 import com.mokelab.compose.todo.model.todo.ToDo
 import com.mokelab.compose.todo.repository.todo.ToDoRepository
 import com.mokelab.compose.todo.ui.theme.ComposeToDoTheme
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun CreateToDoScreen(
@@ -114,6 +115,14 @@ fun CreatePreview() {
     val navController = rememberNavController()
     val viewModel = CreateToDoViewModel(object : ToDoRepository {
         override suspend fun create(title: String, detail: String): ToDo {
+            TODO("Not yet implemented")
+        }
+
+        override fun getAll(): Flow<List<ToDo>> {
+            TODO("Not yet implemented")
+        }
+
+        override fun getById(todoId: Int): Flow<ToDo> {
             TODO("Not yet implemented")
         }
     })

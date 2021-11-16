@@ -14,7 +14,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,9 +38,8 @@ fun MainScreen(
         topBar = { MainTopBar() },
         floatingActionButton = { MainFAB(navController) }
     ) {
-        ToDoList(todoList) {
-            // 画面遷移は次回
-            println(it)
+        ToDoList(todoList) { todo ->
+            navController.navigate("detail/${todo._id}")
         }
     }
 }
@@ -107,6 +105,10 @@ fun MainScreenPreview() {
             return flow {
                 emit(listOf())
             }
+        }
+
+        override fun getById(todoId: Int): Flow<ToDo> {
+            TODO("Not yet implemented")
         }
     })
     ComposeToDoTheme {
