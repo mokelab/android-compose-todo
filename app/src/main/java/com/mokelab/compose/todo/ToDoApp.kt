@@ -42,10 +42,10 @@ fun ToDoApp() {
             ) { backStackEntry ->
                 val viewModel = hiltViewModel<ToDoDetailViewModel>()
                 val todoId = backStackEntry.arguments?.getInt("todoId") ?: 0
+                viewModel.setId(todoId)
                 ToDoDetailScreen(
                     navController = navController,
                     viewModel = viewModel,
-                    todoId = todoId
                 )
             }
             composable(
