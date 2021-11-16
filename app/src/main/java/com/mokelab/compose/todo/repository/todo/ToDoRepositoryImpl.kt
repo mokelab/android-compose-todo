@@ -2,6 +2,7 @@ package com.mokelab.compose.todo.repository.todo
 
 import com.mokelab.compose.todo.model.todo.ToDo
 import com.mokelab.compose.todo.model.todo.ToDoDAO
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ToDoRepositoryImpl @Inject constructor(
@@ -16,5 +17,9 @@ class ToDoRepositoryImpl @Inject constructor(
         )
         dao.create(todo)
         return todo
+    }
+
+    override fun getAll(): Flow<List<ToDo>> {
+        return dao.getAll()
     }
 }
