@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -23,7 +25,9 @@ fun ToDoDetailScreen(
 
     Scaffold(
         topBar = {
-            DetailTopBar(navController, todo.value)
+            DetailTopBar(navController, todo.value) {
+                navController.navigate("edit/${todo.value._id}")
+            }
         },
     ) {
         DetailBody(todo.value)
@@ -34,6 +38,7 @@ fun ToDoDetailScreen(
 fun DetailTopBar(
     navController: NavController,
     todo: ToDo,
+    toEdit: () -> Unit,
 ) {
     TopAppBar(
         navigationIcon = {
@@ -50,6 +55,13 @@ fun DetailTopBar(
                 Text(todo.title)
             }
         },
+        actions = {
+            if (todo._id != emptyToDoId) {
+                IconButton(onClick = toEdit) {
+                    Icon(Icons.Filled.Edit, "Edit")
+                }
+            }
+        }
     )
 }
 
