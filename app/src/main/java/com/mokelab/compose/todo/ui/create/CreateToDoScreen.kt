@@ -125,6 +125,10 @@ fun CreatePreview() {
         override fun getById(todoId: Int): Flow<ToDo> {
             TODO("Not yet implemented")
         }
+
+        override suspend fun update(todo: ToDo, title: String, detail: String) {
+            TODO("Not yet implemented")
+        }
     })
     ComposeToDoTheme {
         CreateToDoScreen(navController = navController, viewModel = viewModel)
