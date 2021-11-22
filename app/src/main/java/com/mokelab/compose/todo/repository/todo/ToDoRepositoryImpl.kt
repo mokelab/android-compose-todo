@@ -39,4 +39,8 @@ class ToDoRepositoryImpl @Inject constructor(
         )
         dao.update(updateToDo)
     }
+
+    override suspend fun delete(todo: ToDo) {
+        dao.delete(todo)
+    }
 }
