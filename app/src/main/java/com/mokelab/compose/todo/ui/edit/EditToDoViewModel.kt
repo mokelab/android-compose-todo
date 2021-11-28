@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.mokelab.compose.todo.model.todo.ToDo
 import com.mokelab.compose.todo.repository.todo.ToDoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,14 +16,16 @@ import javax.inject.Inject
 class EditToDoViewModel @Inject constructor(
     private val repo: ToDoRepository
 ) : ViewModel() {
-    private lateinit var _todo: Flow<ToDo>
-    val todo: Flow<ToDo> get() = _todo
+    private val todoId = MutableStateFlow(-1)
+
+    @ExperimentalCoroutinesApi
+    val todo: Flow<ToDo> = todoId.flatMapLatest { todoId -> repo.getById(todoId) }
 
     val errorMessage = MutableStateFlow("")
     val done = MutableStateFlow(false)
 
     fun setId(todoId: Int) {
-        _todo = repo.getById(todoId)
+        this.todoId.value = todoId
     }
 
     fun save(todo: ToDo, title: String, detail: String) {
