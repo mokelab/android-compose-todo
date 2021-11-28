@@ -129,6 +129,10 @@ fun CreatePreview() {
         override suspend fun update(todo: ToDo, title: String, detail: String) {
             TODO("Not yet implemented")
         }
+
+        override suspend fun delete(todo: ToDo) {
+            TODO("Not yet implemented")
+        }
     })
     ComposeToDoTheme {
         CreateToDoScreen(navController = navController, viewModel = viewModel)
